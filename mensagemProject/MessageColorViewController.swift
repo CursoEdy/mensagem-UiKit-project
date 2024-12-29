@@ -14,22 +14,19 @@ class MessageColorViewController: BaseViewController {
         super.viewDidLoad()
 
         lbMessage.text = message.text
+        lbMessage.textColor = message.textColor
+        lbMessage.backgroundColor = message.backgroundColor
     }
     
-    override func changeColor(_ sender: UIButton) {
-        let colorPicker = storyboard?.instantiateViewController(identifier: "ColorPickerViewController") as! ColorPickerViewController
-        colorPicker.modalTransitionStyle = .crossDissolve // apresentacao do model em modo de scale
-        present(colorPicker, animated: true, completion: nil)
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let vc = segue.destination as! ScreenColorViewController
+        vc.message = message
     }
-    */
+}
 
+extension MessageColorViewController: colorPickerDelegate {
+    func applyColor(color: UIColor) {
+        lbMessage.backgroundColor = color
+        message.backgroundColor = color
+    }
 }

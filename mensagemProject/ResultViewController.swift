@@ -12,8 +12,17 @@ class ResultViewController: BaseViewController {
 
     @IBOutlet weak var viBorder: UIView!
     
+    // confirmar se a borda esta ativa
+    var useWhiteBorder: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lbMessage.text = message.text
+        lbMessage.textColor = message.textColor
+        lbMessage.backgroundColor = message.backgroundColor
+        view.backgroundColor = message.screenColor
+        viBorder.backgroundColor = useWhiteBorder ? .white : .clear
 
         navigationController?.setNavigationBarHidden(true, animated: true)
         // Do any additional setup after loading the view.
@@ -23,16 +32,4 @@ class ResultViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

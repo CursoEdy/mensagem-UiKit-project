@@ -15,22 +15,26 @@ class ScreenColorViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        lbMessage.text = message.text
+        lbMessage.textColor = message.textColor
+        lbMessage.backgroundColor = message.backgroundColor
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! ResultViewController
+        vc.message = message
+        vc.useWhiteBorder = swBoder.isOn
     }
     
     @IBAction func onBorder(_ sender: UISwitch) {
         viBorder.backgroundColor = sender.isOn ? .white : .clear
     }
-    
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension ScreenColorViewController: colorPickerDelegate {
+    func applyColor(color: UIColor) {
+        view.backgroundColor = color
+        message.screenColor = color
     }
-    */
-
 }

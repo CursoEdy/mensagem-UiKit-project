@@ -10,7 +10,7 @@ import UIKit
 struct Message {
     
     var text: String?
-    var textColor: UIImage?
+    var textColor: UIColor?
     var backgroundColor: UIColor?
     var screenColor: UIColor?
     

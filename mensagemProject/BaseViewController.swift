@@ -18,6 +18,13 @@ class BaseViewController: UIViewController {
     }
     
     @IBAction func changeColor(_ sender: UIButton){
-        
+        if let reference = self as? colorPickerDelegate {
+            let colorPicker = storyboard?.instantiateViewController(identifier: "ColorPickerViewController") as! ColorPickerViewController
+            colorPicker.modalTransitionStyle = .crossDissolve // apresentacao do model em modo de scale
+    //        colorPicker.modalTransitionStyle = .flipHorizontal// apresentacao do model em modo card
+    //        colorPicker.modalTransitionStyle = .coverVertical // apresentacao do model de baixo para cima
+            colorPicker.delegate = reference
+            present(colorPicker, animated: true, completion: nil)
+        }
     }
 }
